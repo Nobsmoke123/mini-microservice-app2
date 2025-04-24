@@ -43,7 +43,7 @@ const PostList = () => {
 
   return (
     <div className="flex flex-col p-8 justify-start items-start border-3 border-gray-100 w-300  overflow-x-scroll">
-      <h1 className="text-2xl font-bold text-blue-700 text-left">Post List</h1>
+      <h1 className="text-2xl font-bold text-blue-700 text-left">Posts List</h1>
       <div className="flex gap-4 mt-4">{renderedPosts}</div>
     </div>
   );
