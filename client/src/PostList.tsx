@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import CommentCreate from "./CommentCreate";
+import CommentList from "./CommentList";
 
 interface IPost {
   id: string;
@@ -9,7 +11,7 @@ interface IPost {
 const PostList = () => {
   const [posts, setPosts]: [
     Record<string, IPost>,
-    React.Dispatch<React.SetStateAction<IPost>>
+    React.Dispatch<React.SetStateAction<Record<string, IPost>>>
   ] = useState({});
 
   const fetchPosts = async () => {
@@ -26,8 +28,14 @@ const PostList = () => {
       <div key={post.id}>
         <div className="p-6 shadow-lg rounded-md w-100 flex flex-col justify-center items-left gap-4">
           <h2 className="text-2xl font-bold text-blue-700 text-left">
-            {post.title}
+            {post.title} (#{post.id})
           </h2>
+          <div className="mt-4">
+            <CommentList postId={post.id} />
+          </div>
+          <div>
+            <CommentCreate postId={post.id} />
+          </div>
         </div>
       </div>
     );
