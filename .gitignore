@@ -2,6 +2,7 @@ posts/node_modules
 client/node_modules
 comments/node_modules
 event-bus/node_modules
+query-service/node_modules
 
 # Logs
 logs
