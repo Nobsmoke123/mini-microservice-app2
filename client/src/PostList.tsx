@@ -6,6 +6,10 @@ import CommentList from "./CommentList";
 interface IPost {
   id: string;
   title: string;
+  comments: Array<{
+    id: string;
+    content: string;
+  }>;
 }
 
 const PostList = () => {
@@ -15,7 +19,7 @@ const PostList = () => {
   ] = useState({});
 
   const fetchPosts = async () => {
-    const response = await axios.get("http://localhost:4000/posts");
+    const response = await axios.get("http://localhost:4002/posts");
     setPosts(response.data);
   };
 
@@ -31,7 +35,7 @@ const PostList = () => {
             {post.title} (#{post.id})
           </h2>
           <div className="mt-4">
-            <CommentList postId={post.id} />
+            <CommentList comments={post.comments} />
           </div>
           <div>
             <CommentCreate postId={post.id} />

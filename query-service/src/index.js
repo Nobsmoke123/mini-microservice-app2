@@ -9,6 +9,8 @@ app.use(
   })
 );
 
+app.use(express.json());
+
 const posts = {};
 
 app.get("/posts", (req, res) => {
@@ -17,6 +19,8 @@ app.get("/posts", (req, res) => {
 
 app.post("/events", (req, res) => {
   const event = req.body;
+
+  console.log("Event received:", event);
 
   if (event.type === "PostCreated") {
     const { id, title } = event.data;
@@ -27,16 +31,16 @@ app.post("/events", (req, res) => {
     };
   } else if (event.type === "CommentCreated") {
     const { id, content, postId } = event.data;
-    const posts = posts[postId];
+    const post = posts[postId];
 
-    if (posts) {
-      posts.comments.push({
+    if (post) {
+      post.comments.push({
         id,
         content,
       });
     }
   }
-
+  console.log("The posts are:", posts);
   console.log("Event received:", event);
   res.status(200).send({ status: "OK" });
 });
