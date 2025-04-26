@@ -1,15 +1,12 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import CommentCreate from "./CommentCreate";
-import CommentList from "./CommentList";
+import CommentList, { IComment } from "./CommentList";
 
 interface IPost {
   id: string;
   title: string;
-  comments: Array<{
-    id: string;
-    content: string;
-  }>;
+  comments: Array<IComment>;
 }
 
 const PostList = () => {
