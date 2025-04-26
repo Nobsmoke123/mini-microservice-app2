@@ -12,12 +12,18 @@ app.post("/events", async (req, res) => {
 
   console.log("Event received:", event);
 
+  events.push(event);
+
   await axios.post("http://localhost:4000/events", event);
   await axios.post("http://localhost:4001/events", event);
   await axios.post("http://localhost:4002/events", event);
   await axios.post("http://localhost:4003/events", event);
 
   res.status(200).send({ status: "OK" });
+});
+
+app.get("/events", (req, res) => {
+  res.status(200).send(events);
 });
 
 app.listen(4005, () => {
