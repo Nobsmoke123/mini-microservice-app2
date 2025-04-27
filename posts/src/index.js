@@ -43,5 +43,6 @@ app.post("/events", (req, res) => {
 });
 
 app.listen(4000, "0.0.0.0", () => {
+  console.log("Receive traffic from the outside world.");
   console.log(`Server is running on port 4000`);
 });
