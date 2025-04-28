@@ -57,6 +57,7 @@ app.post("/events", (req, res) => {
   const event = req.body;
 
   console.log("Event received:", event);
+  handleEvents(event);
 
   res.status(200).send({ status: "OK" });
 });
