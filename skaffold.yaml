@@ -1,0 +1,58 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - infra/k8s/*l
+build:
+  local:
+    push: false
+  artifacts:
+    - image: codeshannon/mini-microservice-app-react-client
+      context: client
+      docker:
+        dockerfile: client/Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.js'
+            dest: .
+    - image: codeshannon/mini-microservice-app-query-service
+      context: query-service
+      docker:
+        dockerfile: query-service/Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.js'
+            dest: .
+    - image: codeshannon/mini-microservice-app-posts
+      context: posts
+      docker:
+        dockerfile: posts/Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.js'
+            dest: .
+    - image: codeshannon/mini-microservice-app-comments
+      context: comments
+      docker:
+        dockerfile: comments/Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.js'
+            dest: .
+    - image: codeshannon/mini-microservice-app-moderation-service
+      context: moderation-service
+      docker:
+        dockerfile: moderation-service/Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.js'
+            dest: .
+    - image: codeshannon/mini-microservice-app-event-bus
+      context: event-bus
+      docker:
+        dockerfile: event-bus/Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.js'
+            dest: .

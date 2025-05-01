@@ -49,7 +49,6 @@ const handleEvents = (event) => {
 
 app.get("/posts", (req, res) => {
   const event = req.body;
-  handleEvents(event);
   res.status(200).send(posts);
 });
 
