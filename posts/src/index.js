@@ -38,11 +38,10 @@ app.post("/posts", async (req, res) => {
 app.post("/events", (req, res) => {
   const event = req.body;
   console.log("Event received:", event);
-
   res.status(200).send({ status: "OK" });
 });
 
-app.listen(4000, "0.0.0.0", () => {
+app.listen(4000, () => {
   console.log("Receive traffic from the outside world.");
   console.log(`Server is running on port 4000`);
 });
